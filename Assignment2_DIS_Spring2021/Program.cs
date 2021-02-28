@@ -122,7 +122,7 @@ namespace Assignment2_DIS_Spring2021
                 {
                     arr[i] = i % 2 == 0 ? nums[j++] : nums[n++];
                 }
-                Console.WriteLine();
+                //Console.WriteLine();
             }
             catch (Exception)
             {
@@ -159,7 +159,7 @@ namespace Assignment2_DIS_Spring2021
                 {
                     ar2[count++] = 0;
                 }
-                Console.WriteLine();
+                //Console.WriteLine();
             }
             catch (Exception)
             {
@@ -203,7 +203,7 @@ namespace Assignment2_DIS_Spring2021
                         }
                     }
                 }
-                Console.WriteLine();
+                //Console.WriteLine();
             }
             catch (Exception)
             {
@@ -249,7 +249,7 @@ namespace Assignment2_DIS_Spring2021
                 }
                 //returns no pairs
                 //return null;
-                Console.WriteLine();
+                //Console.WriteLine();
             }
             catch (Exception)
             {
@@ -288,7 +288,7 @@ namespace Assignment2_DIS_Spring2021
                     chArray[indices[i]] = s[i];
                 }
                 //return new string(chArray);
-                Console.WriteLine();
+                //Console.WriteLine();
             }
             catch (Exception)
             {
