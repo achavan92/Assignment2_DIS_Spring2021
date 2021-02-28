@@ -588,20 +588,19 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
+                // initialize stairs array as new steps add 1
+                int[] stairs = new int[steps + 1];
+                // where index 0,1 is equal
+                stairs[0] = 1;
+                stairs[1] = 1;
                 // check to see if the input is 1 or 0, else print
                 if (steps == 1 || steps == 0)
                 { Console.WriteLine(steps); }
-               
-                //3 + 1 -- stairs are at 4
-                    // initialize stairs array as new steps add 1
-                    int[] stairs = new int[steps + 1];
-                    stairs[0] = 1;
-                    stairs[1] = 1;
                  // set upward count
                     int up = 0;
                 // for loop to get the number of counted steps
                     for (int i = 2; i <= steps; i++)
-                    {
+                    { // for stairs count variability
                         up = stairs[i - 1] + stairs[i - 2];
                         stairs[i] = up;
                     }
