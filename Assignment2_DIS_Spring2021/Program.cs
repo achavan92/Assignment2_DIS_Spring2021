@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment2_DIS_Spring2021
 {
@@ -111,8 +113,16 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-                
+                // initialize new empty array to take in multiple of int
+                int[] arr = new int[n * 2];
+                // int j to 0--for blank int statement
+                int j = 0;
+                //for loop to rearrange array into new array
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    arr[i] = i % 2 == 0 ? nums[j++] : nums[n++];
+                }
+                Console.WriteLine();
             }
             catch (Exception)
             {
@@ -134,12 +144,25 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-                
+                //initialize count
+                int count = 0;
+                int num = 0;
+                //find all 0's in array, using for loop
+                for (int i = 0; i < num; i++)
+                {
+                    // if number i in array 2 not equal to 0, count and put in ar2
+                    if (ar2[i] != 0)
+                        ar2[count++] = ar2[i];
+                }
+                //while count is les than num, add the 0's
+                while (count < num)
+                {
+                    ar2[count++] = 0;
+                }
+                Console.WriteLine();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -164,11 +187,26 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
+                //initalize integer variables 
+                int pairs = 0;
+                int x = 0;
+                // outer for loop for sorting through array int[] nums
+                for (int i = 0; i < x; i++)
+                {
+                    //nested for-loop to store coolpairs based on criteria
+                    for (int j = 0; j < x; j++)
+                    {
+                        //nums[i] == nums[j] and i<j
+                        if (nums[i] == nums[j] && i < j)
+                        {
+                            pairs++;
+                        }
+                    }
+                }
+                Console.WriteLine();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -194,12 +232,27 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-                
+                //use dictionary to store array and get target value
+                Dictionary<int, int> numsDict = new Dictionary<int, int>();
+
+                //for loop to look through nums array 
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    int num = nums[i];
+                    //if subtracting target from i and that value is in the nums dict, store it
+                    if (numsDict.TryGetValue(target - num, out int index))
+                    {
+                        Console.WriteLine(new[] { index, i });
+                    }
+                    else 
+                    numsDict[num] = i;
+                }
+                //returns no pairs
+                //return null;
+                Console.WriteLine();
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -226,12 +279,19 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-                
+                // initalize character array, string s
+                char[] chArray = new char[s.Length];
+
+                //for loop for reading array
+                for(int i =0;i < s.Length ;i++)
+                {
+                    chArray[indices[i]] = s[i];
+                }
+                //return new string(chArray);
+                Console.WriteLine();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -258,8 +318,54 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-                return false;
+                // put strings into integer variables
+                int first = s1.Length;
+                int second = s2.Length;
+
+                //check to see if length of both strings is the same   
+                if (first != second)
+                { return false; }
+
+                //intialize the size (length) of the words as integer value
+                int size = 0;
+
+                // check to see if first isomorph array is equal in length
+                // put as boolean value
+                bool[] isomorph1 = new bool[size];
+
+                // use for loop to check if first word length is false
+                for (int i = 0; i < size; i++)
+                { isomorph1[i] = false; }
+
+                // empty second isomorph array to hold new length of word
+                int[] isomorph2 = new int[size];
+
+                // for loop to check isomorph2 value
+                for (int i = 0; i < size; i++)
+                { isomorph2[i] = -1; }
+
+                //use for loop to iterate through second string
+                for (int i = 0; i < second; i++)
+                {
+                    //check to see if order of first string is equal to second
+                    if (isomorph2[s1[i]] == -1)
+                    {
+                        // check to see if second string length is true, else
+                        if (isomorph1[s2[i]] == true)
+                        { return false; }
+                        else
+                        { isomorph1[s2[i]] = true; }
+
+                        //store second string into second array
+                        isomorph2[s1[i]] = s2[i];
+                    }
+                    //else if second string index is not equal, return false
+                    else if (isomorph2[s1[i]] != s2[i])
+                    { return false; }
+                }
+
+                return true;
+                //return false;
             }
             catch (Exception)
             {
@@ -293,12 +399,70 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-                
+                //use a dictionary to store the test scores
+                Dictionary<int, int[]> dict1 = new Dictionary<int, int[]>();
+
+                //initialize an array to store the number of scores
+                int scores = items.GetLength(0);
+                int[] studentid = new int[scores];
+
+                // use for loop to check student id with score and store in items array
+                for (int i = 0; i < scores; i++)
+                { studentid[i] = items[i, 0];}
+
+                //intialize keys in dictionary for student ids
+                int[] keysArr = studentid.Distinct().ToArray();
+                //adds ids and grades
+                foreach (int ID in keysArr)
+                {
+                   // initialize count             
+                    int count = 0;
+                   //use a for loop to find all ID's in array   
+                    for (int i = 0; i < scores; i++)
+                    { // if items in array equal id, add to count
+                        if (items[i, 0] == ID)
+                        {count++;}
+                    }
+                    //Grades array is created:
+                    int[] gradesArr = new int[count];
+                    // initialize second count 
+                    int count2 = 0;
+                    //The second for loop checks grades and stores in items array
+                    for (int i = 0; i < scores; i++)
+                    {  // if items in array equal id, add to count
+                        if (items[i, 0] == ID)
+                        { gradesArr[count2] = items[i, 1];
+                            count2++;
+                        }
+                    }
+                    //get the top 5 scores, and sort 
+                    int[] finalArray = new int[5];
+                    Array.Sort(gradesArr);
+                    //add the top 5 scores
+                    for (int i = 0; i < 5; i++)
+                    {
+                        finalArray[i] = gradesArr[gradesArr.Length - 1 - i];
+                    }
+
+                    //adds the id and grades pair to dict1
+                    dict1.Add(ID, finalArray);
+                }
+                //goes through each pair and finds the average in dict1
+                foreach (KeyValuePair<int, int[]> pair in dict1)
+                { // initialize sum of grades
+                    int sum = 0;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        sum += pair.Value[i];
+                    }
+                    // find average of top 5 grades
+                    int avg = sum / 5;
+                    // write to console
+                    Console.Write("[" + pair.Key + ", " + avg + "]  ");
+                }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -329,13 +493,32 @@ namespace Assignment2_DIS_Spring2021
         private static bool HappyNumber(int n)
         {
             try
-            {
-                //write your code here.
-                return false;
+            { // research using hash sets <https://www.geeksforgeeks.org/hashset-in-c-sharp-with-examples/> 
+                //uses hash to allow input and run "analysis" to see if it's happy
+                HashSet<int> happy = new HashSet<int>();
+                // while n (parameter) is not equal to 1
+                while (n != 1)
+                { // if happy contains n integer, check and add to n
+                    if (happy.Contains(n))
+                    { return false; }
+                    happy.Add(n);
+                    // initialize new count
+                    int num = 0;
+                    // while n is positive number
+                    while (n > 0)
+                    {//the happy number check--using Math.Pow system
+                        num += (int)Math.Pow(n % 10, 2);
+                        //n divided by and equal to
+                        n /= 10;
+                    }
+                    // n is equal to new number
+                    n = num;
+                }
+                return true;
+                //return false;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -360,13 +543,22 @@ namespace Assignment2_DIS_Spring2021
         private static int Stocks(int[] prices)
         {
             try
-            {
-                //write your code here.
-                return 0;
+            { //initialize stocks, get max value or min profit
+                int Stocks = 0, profit = int.MaxValue;
+                // use for loop to check for length of stock prices
+                for (int i = 0; i < prices.Length; i++)
+                { // if prices in array less than profit, set 
+                    if (prices[i] < profit)
+                        profit = prices[i];
+                    else
+                        //add to output if the value is greater than the min price (profit)
+                        Stocks = Math.Max(Stocks, prices[i] - profit);
+                }
+                return Stocks;
+                //return 0;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -396,12 +588,25 @@ namespace Assignment2_DIS_Spring2021
         {
             try
             {
-                //write your code here.
-              
+                // check to see if the input is 1 or 0, else print
+                if (steps == 1 || steps == 0)
+                { Console.WriteLine(steps); }
+                    //3 + 1 -- stairs are at 4
+                    int[] stairs = new int[steps + 1];
+                    stairs[0] = 1;
+                    stairs[1] = 1;
+                    int result = 0;
+                // for loop to get the calculated steps
+                    for (int i = 2; i <= steps; i++)
+                    {
+                        result = stairs[i - 1] + stairs[i - 2];
+                        stairs[i] = result;
+                    }
+                //return result;
+                Console.WriteLine();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
